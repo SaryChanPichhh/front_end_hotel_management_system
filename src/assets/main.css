@@ -1,4 +1,4 @@
-@import './base.css';
+@import "./base.css";
 /* src/assets/styles.css or src/main.css */
 
 /* Tailwind's base styles */
@@ -10,10 +10,7 @@
 @tailwind utilities;
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+  min-height: 100vh;
 }
 
 a,
@@ -30,15 +27,8 @@ a,
   }
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
+/* #app {
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
-  }
-}
+  } */
