@@ -1,5 +1,5 @@
 import type { Router } from "vue-router";
-import { RouteName } from "./route-name";
+import { ROUTE_NAME } from "./route-name";
 
 export function registerAuthGuard(router: Router): void {
   router.beforeEach((to, _from, next) => {
