@@ -40,6 +40,7 @@ export const routes: RouteRecordRaw[] = [
           {
             path: "/room-type",
             component: () => import("@/views/rooms/RoomType.vue"),
+            name: ROUTE_NAME.ROOM_TYPE,
           },
         ],
       },

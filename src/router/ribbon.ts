@@ -16,6 +16,21 @@ const ribbonData = [
     ],
   },
   {
+    name: "ការកំណត់ទូទៅ",
+    groups: [
+      {
+        name: "បន្ទប់",
+        buttons: [
+          {
+            name: "ប្រភេទបន្ទប់",
+            route: ROUTE_NAME.ROOM_TYPE,
+            icon: UserGroupIcon,
+          },
+        ],
+      },
+    ],
+  },
+  {
     name: "សេវាកម្ម",
     groups: [
       {

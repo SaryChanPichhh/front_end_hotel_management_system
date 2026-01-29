@@ -19,15 +19,42 @@ const selectedTab = ref(ribbonData[0]);
 const selectSubTabIndex = ref(0);
 const activeButton = ref<string | null>(null);
 const selectedButton = ref<Tab[]>([]);
+
+// Load tabs from local storage on mount
+const loadTabsFromLocalStorage = () => {
+  const storedTabs = localStorage.getItem("tabs");
+  if (storedTabs) {
+    try {
+      selectedButton.value = JSON.parse(storedTabs);
+      // Set active button to the last one if exists, or handle routing if needed
+      if (selectedButton.value.length > 0) {
+        const lastTab = selectedButton.value[selectedButton.value.length - 1];
+        activeButton.value = lastTab.button_name;
+        // Optionally navigate to the last open tab
+        // router.push({ name: lastTab.route });
+      }
+    } catch (e) {
+      console.error("Failed to parse tabs from local storage", e);
+      selectedButton.value = [];
+    }
+  }
+};
+
+loadTabsFromLocalStorage();
+
 const selectTab = (tab: any, index: number) => {
   selectSubTabIndex.value = index;
   selectedTab.value = tab;
-  console.log(selectedTab.value?.groups);
 };
+
+const saveTabsToLocalStorage = () => {
+  localStorage.setItem("tabs", JSON.stringify(selectedButton.value));
+};
+
 const actionButton = (
   buttonIndex: number,
   button_name: string,
-  route: string
+  route: string,
 ) => {
   activeButton.value = button_name;
 
@@ -37,25 +64,29 @@ const actionButton = (
       button_name: button_name,
       route: route,
     });
-    router.push({ name: route });
+    saveTabsToLocalStorage();
   }
+  router.push({ name: route });
 };
 
 const removeTab = (button_name: string, index: number, route: string) => {
-  const getIndex = selectedButton.value.indexOf(
-    { button_index: index, button_name: button_name, route: route },
-    1
+  const tabIndex = selectedButton.value.findIndex(
+    (t) => t.button_name === button_name && t.route === route,
   );
 
-  if (getIndex !== 1) {
-    selectedButton.value.splice(getIndex, 1);
-    if (button_name === activeButton.value) {
-      activeButton.value =
-        (selectedButton.value.length > 0
-          ? selectedButton.value[selectedButton.value.length - 1]?.button_name
-          : null) ?? null;
+  if (tabIndex !== -1) {
+    selectedButton.value.splice(tabIndex, 1);
+    saveTabsToLocalStorage();
 
-      router.back();
+    if (button_name === activeButton.value) {
+      if (selectedButton.value.length > 0) {
+        const lastTab = selectedButton.value[selectedButton.value.length - 1];
+        activeButton.value = lastTab.button_name;
+        router.push({ name: lastTab.route });
+      } else {
+        activeButton.value = null;
+        router.push("/app"); // Navigate to a default route or home
+      }
     }
   }
 };
@@ -63,7 +94,9 @@ const removeTab = (button_name: string, index: number, route: string) => {
 
 <!-- src/layouts/RibbonLayout.vue -->
 <template>
-  <div class="min-h-screen grid grid-rows-[auto_auto_auto_1fr_auto]">
+  <div
+    class="min-h-screen grid grid-rows-[auto_auto_auto_1fr_auto] h-screen overflow-hidden"
+  >
     <div class="w-full bg-primary text-white flex h-11">
       <!-- Ribbon Navigation -->
       <div class="" v-for="(tab, index) in ribbonData" :key="index">
@@ -137,6 +170,9 @@ const removeTab = (button_name: string, index: number, route: string) => {
         >
           <button
             class="bg-inherit text-primary hover:bg-transparent py-1.5 border-0"
+            @click="
+              actionButton(item.button_index, item.button_name, item.route)
+            "
           >
             {{ item.button_name }}</button
           ><XMarkIcon
