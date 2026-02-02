@@ -101,18 +101,13 @@ function selectFramework(selectedValue: string) {
     <div class="flex w-full h-12 gap-1 items-center">
       <div class="relative flex-grow">
         <MagnifyingGlassIcon class="absolute left-2.5 top-2.5 h-5 w-5" />
-        <input
-          class="rounded-md w-[50vw] p-2 pl-10 border border-gray-300"
-          placeholder="ស្វែងរកបន្ទប់"
-        />
+        <input class="rounded-md w-[50vw] p-2 pl-10 border border-gray-300" placeholder="ស្វែងរកបន្ទប់" />
       </div>
       <Dialog>
         <form>
           <DialogTrigger as-child>
-            <button
-              variant="outline"
-              class="rounded-md flex-none p-2 px-2 border border-gray-300 flex items-center gap-2 justify-center"
-            >
+            <button variant="outline"
+              class="rounded-md flex-none p-2 px-2 border border-gray-300 flex items-center gap-2 justify-center">
               <Plus class="w-5 h-5" />
               បង្កើតបន្ទប់
             </button>
@@ -127,46 +122,32 @@ function selectFramework(selectedValue: string) {
                   <Label for="name-1" class="w-[130px]">ឈ្មោះហូតែល៖</Label>
                   <Popover v-model:open="open">
                     <PopoverTrigger as-child>
-                      <Button
-                        variant="outline"
-                        role="combobox"
-                        :aria-expanded="open"
-                        class="w-full h-11 justify-between border border-primary rounded-sm p-2"
-                      >
+                      <Button variant="outline" role="combobox" :aria-expanded="open"
+                        class="w-full h-11 justify-between border border-primary rounded-sm p-2">
                         {{ selectedFramework?.label || "ជ្រើសរើសហូតែល..." }}
                         <ChevronsUpDownIcon class="opacity-50" />
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent class="p-0 w-full">
                       <Command>
-                        <CommandInput
-                          class="h-9"
-                          placeholder="ស្វែងរកហូតែល..."
-                        />
+                        <CommandInput class="h-9" placeholder="ស្វែងរកហូតែល..." />
                         <CommandList>
                           <CommandEmpty>គ្មានហូតែល</CommandEmpty>
                           <CommandGroup>
-                            <CommandItem
-                              v-for="framework in frameworks"
-                              :key="framework.value"
-                              :value="framework.value"
+                            <CommandItem v-for="framework in frameworks" :key="framework.value" :value="framework.value"
                               @select="
                                 (ev) => {
                                   selectFramework(ev.detail.value as string);
                                 }
-                              "
-                            >
+                              ">
                               {{ framework.label }}
-                              <CheckIcon
-                                :class="
-                                  cn(
-                                    'ml-auto',
-                                    value === framework.value
-                                      ? 'opacity-100'
-                                      : 'opacity-0',
-                                  )
-                                "
-                              />
+                              <CheckIcon :class="cn(
+                                'ml-auto',
+                                value === framework.value
+                                  ? 'opacity-100'
+                                  : 'opacity-0',
+                              )
+                                " />
                             </CommandItem>
                           </CommandGroup>
                         </CommandList>
@@ -176,39 +157,23 @@ function selectFramework(selectedValue: string) {
                 </div>
                 <div class="flex gap-1">
                   <Label for="name-1" class="w-[130px]">ឈ្មោះហូតែល៖</Label>
-                  <input
-                    class="w-full p-2 border border-primary rounded-sm"
-                    id="name-1"
-                    name="name"
-                    default-value="Pedro Duarte"
-                  />
+                  <input class="w-full p-2 border border-primary rounded-sm" id="name-1" name="name"
+                    default-value="Pedro Duarte" />
                 </div>
                 <div class="flex gap-1">
                   <Label for="name-1" class="w-[130px]">ឈ្មោះហូតែល៖</Label>
-                  <input
-                    class="w-full p-2 border border-primary rounded-sm"
-                    id="name-1"
-                    name="name"
-                    default-value="Pedro Duarte"
-                  />
+                  <input class="w-full p-2 border border-primary rounded-sm" id="name-1" name="name"
+                    default-value="Pedro Duarte" />
                 </div>
                 <div class="flex gap-1">
                   <Label for="name-1" class="w-[130px]">ឈ្មោះហូតែល៖</Label>
-                  <input
-                    class="w-full p-2 border border-primary rounded-sm"
-                    id="name-1"
-                    name="name"
-                    default-value="Pedro Duarte"
-                  />
+                  <input class="w-full p-2 border border-primary rounded-sm" id="name-1" name="name"
+                    default-value="Pedro Duarte" />
                 </div>
                 <div class="flex gap-1">
                   <Label for="name-1" class="w-[130px]">ឈ្មោះហូតែល៖</Label>
-                  <input
-                    class="w-full p-2 border border-primary rounded-sm"
-                    id="name-1"
-                    name="name"
-                    default-value="Pedro Duarte"
-                  />
+                  <input class="w-full p-2 border border-primary rounded-sm" id="name-1" name="name"
+                    default-value="Pedro Duarte" />
                 </div>
               </div>
               <div class="grid gap-3">
@@ -216,29 +181,20 @@ function selectFramework(selectedValue: string) {
                   <Label for="name-1" class="w-[130px]">ឈ្មោះហូតែល៖</Label>
                   <Popover>
                     <PopoverTrigger as-child>
-                      <Button
-                        variant="outline"
-                        role="combobox"
-                        class="w-full h-11 justify-between border border-primary rounded-sm"
-                      >
+                      <Button variant="outline" role="combobox"
+                        class="w-full h-11 justify-between border border-primary rounded-sm">
                         {{ selectedFramework?.label || "ជ្រើសរើសហូតែល..." }}
                         <ChevronsUpDownIcon class="opacity-50" />
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent class="p-0">
                       <Command>
-                        <CommandInput
-                          class="h-9"
-                          placeholder="ស្វែងរកហូតែល..."
-                        />
+                        <CommandInput class="h-9" placeholder="ស្វែងរកហូតែល..." />
                         <CommandList>
                           <CommandEmpty>គ្មានហូតែល</CommandEmpty>
                           <CommandGroup>
-                            <CommandItem
-                              v-for="framework in frameworks"
-                              :key="framework.value"
-                              :value="framework.value"
-                            >
+                            <CommandItem v-for="framework in frameworks" :key="framework.value"
+                              :value="framework.value">
                               {{ framework.label }}
                               <CheckIcon />
                             </CommandItem>
@@ -250,39 +206,23 @@ function selectFramework(selectedValue: string) {
                 </div>
                 <div class="flex gap-1">
                   <Label for="name-1" class="w-[130px]">ឈ្មោះហូតែល៖</Label>
-                  <input
-                    class="w-full p-2 border border-primary rounded-sm"
-                    id="name-1"
-                    name="name"
-                    default-value="Pedro Duarte"
-                  />
+                  <input class="w-full p-2 border border-primary rounded-sm" id="name-1" name="name"
+                    default-value="Pedro Duarte" />
                 </div>
                 <div class="flex gap-1">
                   <Label for="name-1" class="w-[130px]">ឈ្មោះហូតែល៖</Label>
-                  <input
-                    class="w-full p-2 border border-primary rounded-sm"
-                    id="name-1"
-                    name="name"
-                    default-value="Pedro Duarte"
-                  />
+                  <input class="w-full p-2 border border-primary rounded-sm" id="name-1" name="name"
+                    default-value="Pedro Duarte" />
                 </div>
                 <div class="flex gap-1">
                   <Label for="name-1" class="w-[130px]">ឈ្មោះហូតែល៖</Label>
-                  <input
-                    class="w-full p-2 border border-primary rounded-sm"
-                    id="name-1"
-                    name="name"
-                    default-value="Pedro Duarte"
-                  />
+                  <input class="w-full p-2 border border-primary rounded-sm" id="name-1" name="name"
+                    default-value="Pedro Duarte" />
                 </div>
                 <div class="flex gap-1">
                   <Label for="name-1" class="w-[130px]">ឈ្មោះហូតែល៖</Label>
-                  <input
-                    class="w-full p-2 border border-primary rounded-sm"
-                    id="name-1"
-                    name="name"
-                    default-value="Pedro Duarte"
-                  />
+                  <input class="w-full p-2 border border-primary rounded-sm" id="name-1" name="name"
+                    default-value="Pedro Duarte" />
                 </div>
               </div>
             </div>
@@ -296,9 +236,7 @@ function selectFramework(selectedValue: string) {
         </form>
       </Dialog>
 
-      <button
-        class="rounded-md flex-none p-2 px-2 border border-gray-300 flex items-center gap-2 justify-center"
-      >
+      <button class="rounded-md flex-none p-2 px-2 border border-gray-300 flex items-center gap-2 justify-center">
         <ArrowDownTrayIcon class="w-5 h-5" />
         របាយការណ៍
       </button>
@@ -319,11 +257,8 @@ function selectFramework(selectedValue: string) {
           </TableRow>
         </TableHeader>
         <TableBody class="">
-          <TableRow
-            v-for="(value, index) in rooms"
-            :key="value.ROOM_ID"
-            :class="(index + 1) % 2 === 0 ? 'bg-white' : 'bg-purple-50'"
-          >
+          <TableRow v-for="(value, index) in rooms" :key="value.ROOM_ID"
+            :class="(index + 1) % 2 === 0 ? 'bg-white' : 'bg-purple-50'">
             <TableCell>{{ index + 1 }}</TableCell>
             <TableCell>{{ value.HOTEL_NAME }}</TableCell>
             <TableCell>{{ value.ROOM_ID }}</TableCell>
@@ -331,18 +266,10 @@ function selectFramework(selectedValue: string) {
             <TableCell>{{ value.ROOM_NO }}</TableCell>
             <TableCell>{{ value.FLOOR }}</TableCell>
             <TableCell>{{ value.WING }}</TableCell>
-            <TableCell
-              :class="
-                value.STATUS === 'AVAILABLE' ? 'text-primary' : 'text-red-200'
-              "
-              >{{ value.STATUS }}</TableCell
-            >
-            <TableCell
-              :class="
-                value.IS_ACTIVE === true ? 'text-primary' : 'text-red-500'
-              "
-              >{{ roomStore.isRoomActive(value.IS_ACTIVE) }}</TableCell
-            >
+            <TableCell :class="value.STATUS === 'AVAILABLE' ? 'text-primary' : 'text-red-200'
+              ">{{ value.STATUS }}</TableCell>
+            <TableCell :class="value.IS_ACTIVE === true ? 'text-primary' : 'text-red-500'
+              ">{{ roomStore.isRoomActive(value.IS_ACTIVE) }}</TableCell>
           </TableRow>
         </TableBody>
       </Table>

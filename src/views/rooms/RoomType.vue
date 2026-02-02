@@ -59,18 +59,13 @@ onMounted(() => {
     <div class="flex w-full h-12 gap-1 items-center">
       <div class="relative flex-grow">
         <MagnifyingGlassIcon class="absolute left-2.5 top-2.5 h-5 w-5" />
-        <input
-          class="rounded-md w-[50vw] p-2 pl-10 border border-gray-300"
-          placeholder="ស្វែងរកប្រភេទបន្ទប់"
-        />
+        <input class="rounded-md w-[50vw] p-2 pl-10 border border-gray-300" placeholder="ស្វែងរកប្រភេទបន្ទប់" />
       </div>
       <Dialog>
         <form>
           <DialogTrigger as-child>
-            <button
-              variant="outline"
-              class="rounded-md flex-none p-2 px-2 border border-gray-300 flex items-center gap-2 justify-center"
-            >
+            <button variant="outline"
+              class="rounded-md flex-none p-2 px-2 border border-gray-300 flex items-center gap-2 justify-center">
               <Plus class="w-5 h-5" />
               បង្កើតប្រភេទបន្ទប់
             </button>
@@ -82,91 +77,56 @@ onMounted(() => {
             <div class="flex gap-8">
               <div class="grid gap-3">
                 <div class="flex gap-1">
-                  <Label for="name-1" class="w-[130px]">លេខកូដ</Label>
-                  <Input
-                    class="w-full p-2 border border-primary rounded-sm"
-                    id="code"
-                    name="code"
-                    :default-value="roomTypeStore.generateAutoCode()"
-                    readonly
-                  />
+                  <Label for="name-1" class="w-[130px]">លេខកូដ៖</Label>
+                  <input class="w-full p-1.5 border border-primary rounded-sm" id="code" name="code"
+                    :default-value="roomTypeStore.generateAutoCode()" readonly @mousedown.prevent />
+                </div>
+                <div class="flex gap-1">
+                  <Label for="name-1" class="w-[130px]">បរិយាយ៖</Label>
+                  <input class="w-full p-1.5 border border-primary rounded-sm" id="name-1" name="name"
+                    default-value="Pedro Duarte" />
                 </div>
                 <div class="flex gap-1">
                   <Label for="name-1" class="w-[130px]">ឈ្មោះហូតែល៖</Label>
-                  <input
-                    class="w-full p-2 border border-primary rounded-sm"
-                    id="name-1"
-                    name="name"
-                    default-value="Pedro Duarte"
-                  />
+                  <input class="w-full p-2 border border-primary rounded-sm" id="name-1" name="name"
+                    default-value="Pedro Duarte" />
                 </div>
                 <div class="flex gap-1">
                   <Label for="name-1" class="w-[130px]">ឈ្មោះហូតែល៖</Label>
-                  <input
-                    class="w-full p-2 border border-primary rounded-sm"
-                    id="name-1"
-                    name="name"
-                    default-value="Pedro Duarte"
-                  />
+                  <input class="w-full p-2 border border-primary rounded-sm" id="name-1" name="name"
+                    default-value="Pedro Duarte" />
                 </div>
                 <div class="flex gap-1">
                   <Label for="name-1" class="w-[130px]">ឈ្មោះហូតែល៖</Label>
-                  <input
-                    class="w-full p-2 border border-primary rounded-sm"
-                    id="name-1"
-                    name="name"
-                    default-value="Pedro Duarte"
-                  />
-                </div>
-                <div class="flex gap-1">
-                  <Label for="name-1" class="w-[130px]">ឈ្មោះហូតែល៖</Label>
-                  <input
-                    class="w-full p-2 border border-primary rounded-sm"
-                    id="name-1"
-                    name="name"
-                    default-value="Pedro Duarte"
-                  />
+                  <input class="w-full p-2 border border-primary rounded-sm" id="name-1" name="name"
+                    default-value="Pedro Duarte" />
                 </div>
               </div>
               <div class="grid gap-3">
                 <div class="flex gap-1">
-                  <Label for="name-1" class="w-[130px]">ឈ្មោះហូតែល៖</Label>
+                  <Label for="name-1" class="w-[130px]">ប្រភេទបន្ទប់៖</Label><input
+                    class="w-full p-1.5 border border-primary rounded-sm" id="name-1" name="name"
+                    default-value="Pedro Duarte" />
                 </div>
                 <div class="flex gap-1">
                   <Label for="name-1" class="w-[130px]">ឈ្មោះហូតែល៖</Label>
-                  <input
-                    class="w-full p-2 border border-primary rounded-sm"
-                    id="name-1"
-                    name="name"
-                    default-value="Pedro Duarte"
-                  />
+                  <input class="w-full p-2 border border-primary rounded-sm" id="name-1" name="name"
+                    default-value="Pedro Duarte" />
                 </div>
                 <div class="flex gap-1">
                   <Label for="name-1" class="w-[130px]">ឈ្មោះហូតែល៖</Label>
-                  <input
-                    class="w-full p-2 border border-primary rounded-sm"
-                    id="name-1"
-                    name="name"
-                    default-value="Pedro Duarte"
-                  />
+                  <input class="w-full p-2 border border-primary rounded-sm" id="name-1" name="name"
+                    default-value="Pedro Duarte" />
                 </div>
                 <div class="flex gap-1">
                   <Label for="name-1" class="w-[130px]">ឈ្មោះហូតែល៖</Label>
-                  <input
-                    class="w-full p-2 border border-primary rounded-sm"
-                    id="name-1"
-                    name="name"
-                    default-value="Pedro Duarte"
-                  />
+                  <input class="w-full p-2 border border-primary rounded-sm" id="name-1" name="name"
+                    default-value="Pedro Duarte" />
                 </div>
                 <div class="flex gap-1">
                   <Label for="name-1" class="w-[130px]">ឈ្មោះហូតែល៖</Label>
-                  <input
-                    class="w-full p-2 border border-primary rounded-sm"
-                    id="name-1"
-                    name="name"
-                    default-value="Pedro Duarte"
-                  />
+                  <input class="w-full p-2 border border-primary rounded-sm" id="name-1" name="name"
+                    default-value="Pedro Duarte" />
                 </div>
               </div>
             </div>
@@ -180,9 +140,7 @@ onMounted(() => {
         </form>
       </Dialog>
 
-      <button
-        class="rounded-md flex-none p-2 px-2 border border-gray-300 flex items-center gap-2 justify-center"
-      >
+      <button class="rounded-md flex-none p-2 px-2 border border-gray-300 flex items-center gap-2 justify-center">
         <ArrowDownTrayIcon class="w-5 h-5" />
         របាយការណ៍
       </button>
@@ -201,21 +159,15 @@ onMounted(() => {
           </TableRow>
         </TableHeader>
         <TableBody class="w-full">
-          <TableRow
-            v-for="(value, index) in roomTypeStore.roomTypes"
-            :key="value.RoomTypeCode"
-            :class="(index + 1) % 2 === 0 ? 'bg-white' : 'bg-purple-50'"
-          >
+          <TableRow v-for="(value, index) in roomTypeStore.roomTypes" :key="value.RoomTypeCode"
+            :class="(index + 1) % 2 === 0 ? 'bg-white' : 'bg-purple-50'">
             <TableCell>{{ index + 1 }}</TableCell>
             <TableCell>{{ value.RoomTypeCode }}</TableCell>
             <TableCell>{{ value.RoomTypeName }}</TableCell>
             <TableCell>{{ value.RoomTypeDesc }}</TableCell>
-            <TableCell
-              :class="value.RoomTypeStatus ? 'text-primary' : 'text-red-500'"
-              >{{
-                roomTypeStore.isRoomTypeActive(value.RoomTypeStatus)
-              }}</TableCell
-            >
+            <TableCell :class="value.RoomTypeStatus ? 'text-primary' : 'text-red-500'">{{
+              roomTypeStore.isRoomTypeActive(value.RoomTypeStatus)
+            }}</TableCell>
             <TableCell>{{ value.CreatedBy }}</TableCell>
             <TableCell>{{ formatDateTime(value.CreatedAt) }}</TableCell>
           </TableRow>

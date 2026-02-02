@@ -1,0 +1,407 @@
+[
+    {
+        "from": "DbCode",
+        "to": "DbCode",
+        "default": "",
+        "type": 0,
+        "format": ""
+    },
+    {
+        "from": "ReportName",
+        "to": "ReportName",
+        "default": "",
+        "type": 0,
+        "format": ""
+    },
+    {
+        "from": "ExportFormat",
+        "to": "ExportFormat",
+        "default": 1,
+        "type": 1,
+        "format": "0"
+    },
+    {
+        "from": "CurrencySymbol",
+        "to": "CurrencySymbol",
+        "default": "",
+        "type": 0,
+        "format": ""
+    },
+    {
+        "from": "SubCurrencySymbol",
+        "to": "SubCurrencySymbol",
+        "default": "",
+        "type": 0,
+        "format": ""
+    },
+    {
+        "from": "DecimalPrecision",
+        "to": "DecimalPrecision",
+        "default": 3,
+        "type": 1,
+        "format": "0"
+    },
+    {
+        "from": "SubDecimalPrecision",
+        "to": "SubDecimalPrecision",
+        "default": 0,
+        "type": 1,
+        "format": "0"
+    },
+    {
+        "from": "InvoiceNumber",
+        "to": "InvoiceNumber",
+        "default": "",
+        "type": 0,
+        "format": ""
+    },
+    {
+        "from": "InvoiceDate",
+        "to": "InvoiceDate",
+        "default": "",
+        "type": 0,
+        "format": "yyyy-MM-ddTHH:mm:ss"
+    },
+    {
+        "from": "BookingDate",
+        "to": "BookingDate",
+        "default": "",
+        "type": 0,
+        "format": "yyyy-MM-ddTHH:mm:ss"
+    },
+    {
+        "from": "InvoicePrinted",
+        "to": "InvoicePrinted",
+        "default": "",
+        "type": 0,
+        "format": "yyyy-MM-ddTHH:mm:ss"
+    },
+    {
+        "from": "CustomerCode",
+        "to": "CustomerCode",
+        "default": "",
+        "type": 0,
+        "format": ""
+    },
+    {
+        "from": "CustomerName",
+        "to": "CustomerName",
+        "default": "",
+        "type": 0,
+        "format": ""
+    },
+    {
+        "from": "CustomerTel1",
+        "to": "CustomerTel1",
+        "default": "",
+        "type": 0,
+        "format": ""
+    },
+    {
+        "from": "CustomerTel2",
+        "to": "CustomerTel2",
+        "default": "",
+        "type": 0,
+        "format": ""
+    },
+    {
+        "from": "Tables",
+        "to": "Tables",
+        "default": [],
+        "type": 2,
+        "format": ""
+    },
+    {
+        "from": "Queues",
+        "to": "Queues",
+        "default": [],
+        "type": 2,
+        "format": "0"
+    },
+    {
+        "from": "DiscountOnInvoice",
+        "to": "DiscountOnInvoice",
+        "default": 0,
+        "type": 1,
+        "format": ""
+    },
+    {
+        "from": "ExchangeRate",
+        "to": "ExchangeRate",
+        "default": 0,
+        "type": 1,
+        "format": ""
+    },
+    {
+        "from": "TotalUSD",
+        "to": "TotalUSD",
+        "default": 0,
+        "type": 1,
+        "format": ""
+    },
+    {
+        "from": "TotalKHR",
+        "to": "TotalKHR",
+        "default": 0,
+        "type": 1,
+        "format": ""
+    },
+    {
+        "from": "TotalMainCurr",
+        "to": "TotalMainCurr",
+        "default": 0,
+        "type": 1,
+        "format": ""
+    },
+    {
+        "from": "TotalSubCurr",
+        "to": "TotalSubCurr",
+        "default": 0,
+        "type": 1,
+        "format": ""
+    },
+    {
+        "from": "Note",
+        "to": "Note",
+        "default": "",
+        "type": 0,
+        "format": ""
+    },
+    {
+        "from": "Seller",
+        "to": "Seller",
+        "default": "",
+        "type": 0,
+        "format": ""
+    },
+    {
+        "from": "BookPrice",
+        "to": "BookPrice",
+        "default": "",
+        "type": 0,
+        "format": ""
+    },
+    {
+        "from": "Deposit",
+        "to": "Deposit",
+        "default": "",
+        "type": 0,
+        "format": ""
+    },
+    {
+        "from": "DiscountPercentOnInvoice",
+        "to": "DiscountPercentOnInvoice",
+        "default": 0,
+        "type": 1,
+        "format": ""
+    },
+    {
+        "from": "TotalChange",
+        "to": "TotalChange",
+        "default": 0,
+        "type": 1,
+        "format": ""
+    },
+    {
+        "from": "IsCombo",
+        "to": "IsCombo",
+        "default": 0,
+        "type": 1,
+        "format": "0"
+    },
+    {
+        "from": "Items",
+        "to": "Items",
+        "default": [],
+        "type": 3,
+        "listValue": [
+            {
+                "from": "ItemCode",
+                "to": "ItemCode",
+                "default": "",
+                "type": 0,
+                "format": ""
+            },
+            {
+                "from": "ItemDesc",
+                "to": "ItemDesc",
+                "default": "",
+                "type": 0,
+                "format": ""
+            },
+            {
+                "from": "DiscountPercent",
+                "to": "DiscountPercent",
+                "default": 0,
+                "type": 1,
+                "format": ""
+            },
+            {
+                "from": "Discount",
+                "to": "Discount",
+                "default": 0,
+                "type": 1,
+                "format": ""
+            },
+            {
+                "from": "UnitConvert",
+                "to": "UnitConvert",
+                "default": [],
+                "type": 3,
+                "listValue": [
+                    {
+                        "from": "UnitStock",
+                        "to": "UnitStock",
+                        "default": "",
+                        "type": 0,
+                        "format": ""
+                    },
+                    {
+                        "from": "UnitQty",
+                        "to": "Qty",
+                        "default": 0,
+                        "type": 1,
+                        "format": "0"
+                    },
+                    {
+                        "from": "Price",
+                        "to": "Price",
+                        "default": 0,
+                        "type": 1,
+                        "format": ""
+                    },
+                    {
+                        "from": "Extra",
+                        "to": "Extra",
+                        "default": [],
+                        "type": 3,
+                        "listValue": [
+                            {
+                                "from": "ItemCode",
+                                "to": "ItemCode",
+                                "default": "",
+                                "type": 0,
+                                "format": ""
+                            },
+                            {
+                                "from": "ItemDesc",
+                                "to": "ItemDesc",
+                                "default": "",
+                                "type": 0,
+                                "format": ""
+                            },
+                            {
+                                "from": "DiscountPercent",
+                                "to": "DiscountPercent",
+                                "default": 0,
+                                "type": 1,
+                                "format": ""
+                            },
+                            {
+                                "from": "Discount",
+                                "to": "Discount",
+                                "default": 0,
+                                "type": 1,
+                                "format": ""
+                            },
+                            {
+                                "from": "UnitConvert",
+                                "to": "UnitConvert",
+                                "default": [],
+                                "type": 3,
+                                "listValue": [
+                                    {
+                                        "from": "UnitStock",
+                                        "to": "UnitStock",
+                                        "default": "",
+                                        "type": 0,
+                                        "format": ""
+                                    },
+                                    {
+                                        "from": "Qty",
+                                        "to": "Qty",
+                                        "default": 0,
+                                        "type": 1,
+                                        "format": "0"
+                                    },
+                                    {
+                                        "from": "Price",
+                                        "to": "Price",
+                                        "default": 0,
+                                        "type": 1,
+                                        "format": ""
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "from": "Combo",
+                        "to": "Combo",
+                        "default": [],
+                        "type": 3,
+                        "listValue": [
+                            {
+                                "from": "ItemCode",
+                                "to": "ItemCode",
+                                "default": "",
+                                "type": 0,
+                                "format": ""
+                            },
+                            {
+                                "from": "ItemDesc",
+                                "to": "ItemDesc",
+                                "default": "",
+                                "type": 0,
+                                "format": ""
+                            },
+                            {
+                                "from": "UnitStock",
+                                "to": "UnitStock",
+                                "default": "",
+                                "type": 0,
+                                "format": ""
+                            },
+                            {
+                                "from": "Qty",
+                                "to": "Qty",
+                                "default": 0,
+                                "type": 1,
+                                "format": "0"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "from": "Payments",
+        "to": "Payments",
+        "default": [],
+        "type": 3,
+        "listValue": [
+            {
+                "from": "PaymentType",
+                "to": "PaymentType",
+                "default": "",
+                "type": 0,
+                "format": ""
+            },
+            {
+                "from": "TotalRecieved",
+                "to": "TotalRecieved",
+                "default": 0,
+                "type": 1,
+                "format": ""
+            },
+            {
+                "from": "CurrencySymbol",
+                "to": "CurrencySymbol",
+                "default": "",
+                "type": 0,
+                "format": ""
+            }
+        ]
+    }
+]
