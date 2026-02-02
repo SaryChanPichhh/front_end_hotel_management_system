@@ -78,7 +78,7 @@
 @theme inline {
   --color-warning: var(--warning);
   --color-warning-foreground: var(--warning-foreground);
-  --font-khmer: "Khmer OS Content", system-ui, sans-serif;
+  --font-khmer: "Kantumruy", system-ui, sans-serif;
 }
 
 @layer base {
@@ -92,6 +92,13 @@
 @font-face {
   font-family: "Khmer OS Content";
   src: url("/src/assets/fonts/Content-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Kantumruy";
+  src: url("/src/assets/fonts/Kantumruy-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;

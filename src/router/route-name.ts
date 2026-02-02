@@ -1,7 +1,14 @@
 export const enum ROUTE_NAME {
   HOME = "home",
   ROOM = "room",
+  DASHBOARD = "dashboard",
   ROOM_TYPE = "room-type",
   NOT_FOUND = "notfound",
   SUPPLIER = "supplier",
+  STOCK = "stock",
+  ABOUT = "about",
+  RESERVATION = "reservation",
+  ROOM_CALENDAR = "room-calendar",
+  GUEST = "guest",
+  GUEST_HISTORY = "guest-history",
 }

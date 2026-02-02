@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { ArrowDownTrayIcon } from "@heroicons/vue/24/solid";
@@ -83,12 +82,11 @@ onMounted(() => {
               <div class="grid gap-3">
                 <div class="flex gap-1">
                   <Label for="name-1" class="w-[130px]">លេខកូដ</Label>
-                  <Input
+                  <input
                     class="w-full p-2 border border-primary rounded-sm"
-                    id="code"
-                    name="code"
-                    :default-value="roomTypeStore.generateAutoCode()"
-                    readonly
+                    id="name-1"
+                    name="name"
+                    default-value="{{ roomTypeStore.generateAutoCode() }}"
                   />
                 </div>
                 <div class="flex gap-1">

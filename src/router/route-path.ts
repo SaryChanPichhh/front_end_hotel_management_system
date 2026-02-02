@@ -6,4 +6,10 @@ export const enum ROUTE_PATH {
   BOOKING = "/app/booking",
   HOME = "/home",
   SUPPLIER = "/supplier",
+  STOCK = "/stock",
+  ABOUT = "/about",
+  RESERVATION = "/reservation",
+  ROOM_CALENDAR = "/room-calendar",
+  GUEST = "/guest",
+  GUEST_HISTORY = "/guest-history",
 }
