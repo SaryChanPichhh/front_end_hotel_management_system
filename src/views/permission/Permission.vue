@@ -6,10 +6,10 @@ import IndividualPermission from "./IndividualPermission.vue";
   <div class="w-full">
     <Tabs default-value="individual">
       <TabsList>
-        <TabsTrigger value="individual" class="text-lg"
+        <TabsTrigger value="individual" class="text-md"
           >ការអនុញ្ញាតសិទ្ធ</TabsTrigger
         >
-        <TabsTrigger value="group" class="text-lg"
+        <TabsTrigger value="group" class="text-md"
           >ការអនុញ្ញាតសិទ្ធជាក្រុម</TabsTrigger
         >
       </TabsList>

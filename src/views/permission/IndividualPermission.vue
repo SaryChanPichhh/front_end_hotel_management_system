@@ -2,6 +2,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TabInfo, ButtonInfo, GroupInfo, ActionDesc } from "@/router/TabInfo";
 import { Checkbox } from "@/components/ui/checkbox";
+import { ref } from "vue";
 const permissionData = [
   {
     parent: TabInfo.Permission,
@@ -41,7 +42,64 @@ const permissionData = [
       },
     ],
   },
+  {
+    parent: TabInfo.Reservation,
+    group: [
+      {
+        name: GroupInfo.Reservation,
+        buttons: [
+          {
+            name: ButtonInfo.Reservation,
+            action: [
+              ActionDesc.View,
+              ActionDesc.Add,
+              ActionDesc.Edit,
+              ActionDesc.Delete,
+            ],
+          },
+          {
+            name: ButtonInfo.RoomCalendar,
+            action: [
+              ActionDesc.View,
+              ActionDesc.Add,
+              ActionDesc.Edit,
+              ActionDesc.Delete,
+            ],
+          },
+        ],
+      },
+      {
+        name: GroupInfo.Customer,
+        buttons: [
+          {
+            name: ButtonInfo.GuestInfo,
+            action: [
+              ActionDesc.View,
+              ActionDesc.Add,
+              ActionDesc.Edit,
+              ActionDesc.Delete,
+            ],
+          },
+          {
+            name: ButtonInfo.GuestHistory,
+            action: [
+              ActionDesc.View,
+              ActionDesc.Add,
+              ActionDesc.Edit,
+              ActionDesc.Delete,
+            ],
+          },
+        ],
+      },
+    ],
+  },
 ];
+const buttonSelected = ref('');
+const fnButtonSelected = (groupName:string) => {
+  
+    console.log(groupName);
+    
+}
 </script>
 <template>
   <div class="w-full h-full">
@@ -51,7 +109,7 @@ const permissionData = [
           v-for="tab in permissionData"
           :key="tab.parent"
           :value="tab.parent"
-          class="text-lg border rounded-none bg-gray-100 focus:bg-white"
+          class="text-md border rounded-none bg-gray-100 focus:bg-white"
         >
           {{ tab.parent }}
         </TabsTrigger>
@@ -60,16 +118,25 @@ const permissionData = [
         v-for="tab in permissionData"
         :key="tab.parent"
         :value="tab.parent"
-        class="flex items-center p-0"
+        class="flex items-center p-0  m-0"
       >
         <div class="w-full h-full flex flex-col">
+          <div class="flex items-center gap-2 mt-2"><Checkbox class="rounded-none "></Checkbox>ទាំងអស់</div>
           <div
             v-for="group in tab.group"
             :key="group.name"
-            class="flex items-center"
+            class="flex flex-col items-start mt-2 " 
           >
-            <Checkbox></Checkbox>
-            {{ group.name }}
+            
+            ------------------ {{ group.name }} ------------------
+            <div
+              v-for="button in group.buttons"
+              :key="button.name"
+              class="flex items-center gap-2 mt-2"
+            >
+              <Checkbox class="rounded-none " @change="fnButtonSelected(group.name)"></Checkbox>
+              {{ button.name }}
+            </div>
           </div>
         </div>
       </TabsContent>

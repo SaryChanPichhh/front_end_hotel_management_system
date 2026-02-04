@@ -1,3 +1,5 @@
+
+
 <script setup lang="ts">
 import { ref, computed } from "vue";
 // import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
@@ -177,8 +179,7 @@ const filterRange = computed(() => {
   });
 });
 import CardComponent from "@/components/built-in/Card.Component.vue";
-import BarChartComponent from "@/components/built-in/BarChart.Component.vue";
-import LineChartComponent from "@/components/built-in/LineChart.Component.vue";
+
 import PieChartComponent from "@/components/built-in/PieChart.Component.vue";
 import {
   SquareArrowOutUpRight,
@@ -218,14 +219,7 @@ import DatabTableComponent from "@/components/built-in/DatabTable.Component.vue"
     <!-- LEFT 70% -->
     <div class="flex flex-col gap-4">
       <div class="grid grid-cols-4 gap-4">
-        <CardComponent
-          v-for="(card, index) in cardData"
-          :key="index"
-          :icon="card.icon"
-          :title="card.title"
-          :content="card.content"
-          class="border border-primary hover:shadow-lg"
-        />
+        
       </div>
       <div class="flex"><BarChartComponent /> <LineChartComponent /></div>
     </div>

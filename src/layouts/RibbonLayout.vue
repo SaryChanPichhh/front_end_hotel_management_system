@@ -11,6 +11,7 @@ interface Tab {
   button_index: number;
   button_name: string;
   route: string;
+  group_index: number;
 }
 // Ribbon
 
@@ -61,6 +62,10 @@ loadTabsFromLocalStorage();
 const selectTab = (tab: any, index: number) => {
   selectSubTabIndex.value = index;
   selectedTab.value = tab;
+
+
+
+
 };
 
 const saveTabsToLocalStorage = () => {
@@ -84,13 +89,16 @@ const actionButton = (
       button_index: buttonIndex,
       button_name: button_name,
       route: route,
+      group_index: selectSubTabIndex.value,
     });
     saveTabsToLocalStorage();
   }
   router.push({ name: route });
 };
 
-const removeTab = (button_name: string, index: number, route: string) => {
+const removeTab = (button_name: string, index: number, route: string, group_index: number) => {
+  console.log(group_index);
+
   const tabIndex = selectedButton.value.findIndex(
     (t) => t.button_name === button_name && t.route === route,
   );
@@ -117,20 +125,15 @@ const removeTab = (button_name: string, index: number, route: string) => {
 
 <!-- src/layouts/RibbonLayout.vue -->
 <template>
-  <div
-    class="min-h-screen grid grid-rows-[auto_auto_auto_1fr_auto] h-screen overflow-hidden"
-  >
+  <div class="min-h-screen grid grid-rows-[auto_auto_auto_1fr_auto] h-screen overflow-hidden">
     <div class="w-full bg-primary text-white flex h-11">
       <!-- Ribbon Navigation -->
       <div class="" v-for="(tab, index) in ribbonData" :key="index">
-        <div
-          class="cursor-pointer px-4 py-2 transform hover:scale-110 transition-transform"
-          @click="selectTab(tab, index)"
-          :class="{
+        <div class="cursor-pointer px-4 py-2 transform hover:scale-110 transition-transform"
+          @click="selectTab(tab, index)" :class="{
             'bg-white text-primary h-full pointer-events-none':
               selectedTab?.name === tab.name,
-          }"
-        >
+          }">
           {{ tab.name }}
         </div>
       </div>
@@ -138,24 +141,15 @@ const removeTab = (button_name: string, index: number, route: string) => {
     <div class="w-full text-primary flex gap-2">
       <!-- Ribbon Navigation -->
       <div class="flex">
-        <div
-          v-for="(tab, groupIndex) in selectedTab?.groups"
-          :key="groupIndex"
-          class="flex flex-col items-center py-2 px-4"
-          :class="{
+        <div v-for="(tab, groupIndex) in selectedTab?.groups" :key="groupIndex"
+          class="flex flex-col items-center py-2 px-4" :class="{
             'border-r border-primary': tab.buttons && tab.buttons.length > 0,
-          }"
-        >
+          }">
           <div class="flex gap-4">
-            <div
-              class=""
-              v-for="(button, button_index) in tab.buttons"
-              :key="button.route"
-            >
+            <div class="" v-for="(button, button_index) in tab.buttons" :key="button.route">
               <div
                 class="flex flex-col items-center gap-2 text-sm cursor-pointer py-2 transform hover:scale-110 transition-transform"
-                @click="actionButton(button_index, button.name, button.route)"
-                :class="{
+                @click="actionButton(button_index, button.name, button.route)" :class="{
                   'border rounded-md border-primary bg-purple-50 text-primary h-full pointer-events-none pl-2 pr-2 ':
                     activeButton === button.name,
                 }"
@@ -176,34 +170,24 @@ const removeTab = (button_name: string, index: number, route: string) => {
       </div>
     </div>
 
-    <hr
-      :class="
-        !selectedTab?.groups?.some((x) => x.buttons.length > 0)
-          ? 'w-0 border-0'
-          : 'border-t-1 border-primary'
-      "
-    />
+    <hr :class="!selectedTab?.groups?.some((x) => x.buttons.length > 0)
+      ? 'w-0 border-0'
+      : 'border-t-1 border-primary'
+      " />
 
     <div class="w-full h-full overflow-auto">
       <router-view />
     </div>
     <div class="w-full">
       <div class="flex px-1">
-        <div
-          class="flex items-center border-2 gap-2 px-2 rounded-md"
-          v-for="(item, index) in selectedButton"
-        >
-          <button
-            class="bg-inherit text-primary hover:bg-transparent py-1.5 border-0"
-            @click="
-              actionButton(item.button_index, item.button_name, item.route)
-            "
-          >
-            {{ item.button_name }}</button
-          ><XMarkIcon
+        <div class="flex items-center border-2 gap-2 px-2 rounded-md" v-for="(item, index) in selectedButton">
+          <button class="bg-inherit text-primary hover:bg-transparent py-1.5 border-0" @click="
+            actionButton(item.button_index, item.button_name, item.route)
+            ">
+            {{ item.button_name }}</button>
+          <XMarkIcon
             class="w-5 h-5 text-primary cursor-pointer p-0.5 bg-purple-200 rounded-md hover:bg-purple-100 hover:rounded-md"
-            @click="removeTab(item.button_name, index, item.route)"
-          ></XMarkIcon>
+            @click="removeTab(item.button_name, index, item.route, item.group_index)"></XMarkIcon>
         </div>
       </div>
     </div>
