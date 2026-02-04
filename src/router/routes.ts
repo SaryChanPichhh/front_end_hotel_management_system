@@ -83,6 +83,16 @@ export const routes: RouteRecordRaw[] = [
           },
         ],
       },
+      {
+        path: "/app/permission",
+        children: [
+          {
+            path: ROUTE_PATH.PERMISSION,
+            component: () => import("@/views/permission/Permission.vue"),
+            name: ROUTE_NAME.PERMISSION,
+          },
+        ],
+      },
     ],
   },
   {

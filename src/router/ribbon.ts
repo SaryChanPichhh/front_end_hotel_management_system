@@ -17,24 +17,31 @@ import {
   SparklesIcon,
 } from "@heroicons/vue/24/solid";
 import { FerrisWheel } from "lucide-vue-next";
+import { TabInfo, ButtonInfo, GroupInfo } from "./TabInfo";
 const ribbonData = [
   {
-    name: "ការគ្រប់គ្រង",
+    name: TabInfo.Permission,
     groups: [
       {
-        name: "អនុញ្ញាតសិទ្ធប្រើប្រាស់",
-        buttons: [{ name: "ការអនុញ្ញាតសិទ្ធ", route: "", icon: UserGroupIcon }],
+        name: GroupInfo.Permission,
+        buttons: [
+          {
+            name: ButtonInfo.Permission,
+            route: ROUTE_NAME.PERMISSION,
+            icon: UserGroupIcon,
+          },
+        ],
       },
     ],
   },
   {
-    name: "ការកំណត់ទូទៅ",
+    name: TabInfo.GeneralSetting,
     groups: [
       {
-        name: "បន្ទប់",
+        name: GroupInfo.Room,
         buttons: [
           {
-            name: "ប្រភេទបន្ទប់",
+            name: ButtonInfo.RoomType,
             route: ROUTE_NAME.ROOM_TYPE,
             icon: BuildingOfficeIcon,
           },
@@ -43,32 +50,34 @@ const ribbonData = [
     ],
   },
   {
-    name: "សេវាកម្ម",
+    name: TabInfo.Service,
     groups: [
       {
-        name: "កក់បន្ទប់",
-        buttons: [{ name: "បន្ទប់", route: ROUTE_NAME.ROOM, icon: CubeIcon }],
+        name: GroupInfo.RoomOperation,
+        buttons: [
+          { name: ButtonInfo.Room, route: ROUTE_NAME.ROOM, icon: CubeIcon },
+        ],
       },
     ],
   },
   {
-    name: "ស្តុកទំនិញ",
+    name: TabInfo.Stock,
     groups: [
       {
-        name: "ការតាមដានអតិថិជន និងទីតាំង",
+        name: GroupInfo.Supplier,
         buttons: [
           {
-            name: "អ្នកផ្គត់ផ្គង់",
+            name: ButtonInfo.Supplier,
             route: ROUTE_NAME.SUPPLIER,
             icon: HomeModernIcon,
           },
         ],
       },
       {
-        name: "ស្តុក",
+        name: GroupInfo.Stock,
         buttons: [
           {
-            name: "របាយការណ៍ស្តុក",
+            name: ButtonInfo.Stock,
             route: ROUTE_NAME.STOCK,
             icon: SquaresPlusIcon,
           },
@@ -77,29 +86,33 @@ const ribbonData = [
     ],
   }, // ================= RESERVATION =================
   {
-    name: "ការកក់បន្ទប់",
+    name: TabInfo.Reservation,
     groups: [
       {
-        name: "ការគ្រប់គ្រងការកក់",
+        name: GroupInfo.Reservation,
         buttons: [
           {
-            name: "ការកក់បន្ទប់",
+            name: ButtonInfo.Reservation,
             route: ROUTE_NAME.RESERVATION,
             icon: ClipboardDocumentListIcon,
           },
           {
-            name: "ប្រតិទិនបន្ទប់",
+            name: ButtonInfo.RoomCalendar,
             route: ROUTE_NAME.ROOM_CALENDAR,
             icon: ChartBarIcon,
           },
         ],
       },
       {
-        name: "ភ្ញៀវ",
+        name: GroupInfo.Customer,
         buttons: [
-          { name: "ព័ត៌មានភ្ញៀវ", route: ROUTE_NAME.GUEST, icon: UsersIcon },
           {
-            name: "ប្រវត្តិការស្នាក់នៅ",
+            name: ButtonInfo.GuestInfo,
+            route: ROUTE_NAME.GUEST,
+            icon: UsersIcon,
+          },
+          {
+            name: ButtonInfo.GuestHistory,
             route: ROUTE_NAME.GUEST_HISTORY,
             icon: ClipboardDocumentListIcon,
           },
@@ -109,13 +122,13 @@ const ribbonData = [
   },
   // ================= ABOUT =================
   {
-    name: "អំពីយើង",
+    name: TabInfo.AboutUs,
     groups: [
       {
-        name: "បរិយាយ",
+        name: GroupInfo.AboutSytem,
         buttons: [
           {
-            name: "ព័ត៌មានប្រព័ន្ធ",
+            name: ButtonInfo.About,
             route: ROUTE_NAME.ABOUT,
             icon: ClipboardIcon,
           },

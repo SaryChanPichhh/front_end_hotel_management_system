@@ -1,5 +1,8 @@
+
+
 <script setup lang="ts">
 import { ref, computed } from "vue";
+// import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
 import {
   VisArea,
   VisAxis,
@@ -22,294 +25,203 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
-import { 
-  DollarSign, 
-  Users, 
-  CreditCard, 
-  Activity, 
-  ArrowUpRight 
-} from "lucide-vue-next";
-import BarChartComponent from "@/components/built-in/BarChart.Component.vue";
-import LineChartComponent from "@/components/built-in/LineChart.Component.vue";
-// --- Chart Data & Logic ---
-// Generating some sample data
-const generateData = (days: number) => {
-  const data = [];
-  const today = new Date();
-  for (let i = days; i >= 0; i--) {
-    const date = new Date(today);
-    date.setDate(date.getDate() - i);
-    data.push({
-      date: date,
-      revenue: Math.floor(Math.random() * 5000) + 1000,
-      bookings: Math.floor(Math.random() * 50) + 10,
-    });
-  }
-  return data;
+
+const chartData = [
+  { date: new Date("2024-04-01"), desktop: 222, mobile: 150 },
+  { date: new Date("2024-04-02"), desktop: 97, mobile: 180 },
+  { date: new Date("2024-04-03"), desktop: 167, mobile: 120 },
+  { date: new Date("2024-04-04"), desktop: 242, mobile: 260 },
+  { date: new Date("2024-04-05"), desktop: 373, mobile: 290 },
+  { date: new Date("2024-04-06"), desktop: 301, mobile: 340 },
+  { date: new Date("2024-04-07"), desktop: 245, mobile: 180 },
+  { date: new Date("2024-04-08"), desktop: 409, mobile: 320 },
+  { date: new Date("2024-04-09"), desktop: 59, mobile: 110 },
+  { date: new Date("2024-04-10"), desktop: 261, mobile: 190 },
+  { date: new Date("2024-04-11"), desktop: 327, mobile: 350 },
+  { date: new Date("2024-04-12"), desktop: 292, mobile: 210 },
+  { date: new Date("2024-04-13"), desktop: 342, mobile: 380 },
+  { date: new Date("2024-04-14"), desktop: 137, mobile: 220 },
+  { date: new Date("2024-04-15"), desktop: 120, mobile: 170 },
+  { date: new Date("2024-04-16"), desktop: 138, mobile: 190 },
+  { date: new Date("2024-04-17"), desktop: 446, mobile: 360 },
+  { date: new Date("2024-04-18"), desktop: 364, mobile: 410 },
+  { date: new Date("2024-04-19"), desktop: 243, mobile: 180 },
+  { date: new Date("2024-04-20"), desktop: 89, mobile: 150 },
+  { date: new Date("2024-04-21"), desktop: 137, mobile: 200 },
+  { date: new Date("2024-04-22"), desktop: 224, mobile: 170 },
+  { date: new Date("2024-04-23"), desktop: 138, mobile: 230 },
+  { date: new Date("2024-04-24"), desktop: 387, mobile: 290 },
+  { date: new Date("2024-04-25"), desktop: 215, mobile: 250 },
+  { date: new Date("2024-04-26"), desktop: 75, mobile: 130 },
+  { date: new Date("2024-04-27"), desktop: 383, mobile: 420 },
+  { date: new Date("2024-04-28"), desktop: 122, mobile: 180 },
+  { date: new Date("2024-04-29"), desktop: 315, mobile: 240 },
+  { date: new Date("2024-04-30"), desktop: 454, mobile: 380 },
+  { date: new Date("2024-05-01"), desktop: 165, mobile: 220 },
+  { date: new Date("2024-05-02"), desktop: 293, mobile: 310 },
+  { date: new Date("2024-05-03"), desktop: 247, mobile: 190 },
+  { date: new Date("2024-05-04"), desktop: 385, mobile: 420 },
+  { date: new Date("2024-05-05"), desktop: 481, mobile: 390 },
+  { date: new Date("2024-05-06"), desktop: 498, mobile: 520 },
+  { date: new Date("2024-05-07"), desktop: 388, mobile: 300 },
+  { date: new Date("2024-05-08"), desktop: 149, mobile: 210 },
+  { date: new Date("2024-05-09"), desktop: 227, mobile: 180 },
+  { date: new Date("2024-05-10"), desktop: 293, mobile: 330 },
+  { date: new Date("2024-05-11"), desktop: 335, mobile: 270 },
+  { date: new Date("2024-05-12"), desktop: 197, mobile: 240 },
+  { date: new Date("2024-05-13"), desktop: 197, mobile: 160 },
+  { date: new Date("2024-05-14"), desktop: 448, mobile: 490 },
+  { date: new Date("2024-05-15"), desktop: 473, mobile: 380 },
+  { date: new Date("2024-05-16"), desktop: 338, mobile: 400 },
+  { date: new Date("2024-05-17"), desktop: 499, mobile: 420 },
+  { date: new Date("2024-05-18"), desktop: 315, mobile: 350 },
+  { date: new Date("2024-05-19"), desktop: 235, mobile: 180 },
+  { date: new Date("2024-05-20"), desktop: 177, mobile: 230 },
+  { date: new Date("2024-05-21"), desktop: 82, mobile: 140 },
+  { date: new Date("2024-05-22"), desktop: 81, mobile: 120 },
+  { date: new Date("2024-05-23"), desktop: 252, mobile: 290 },
+  { date: new Date("2024-05-24"), desktop: 294, mobile: 220 },
+  { date: new Date("2024-05-25"), desktop: 201, mobile: 250 },
+  { date: new Date("2024-05-26"), desktop: 213, mobile: 170 },
+  { date: new Date("2024-05-27"), desktop: 420, mobile: 460 },
+  { date: new Date("2024-05-28"), desktop: 233, mobile: 190 },
+  { date: new Date("2024-05-29"), desktop: 78, mobile: 130 },
+  { date: new Date("2024-05-30"), desktop: 340, mobile: 280 },
+  { date: new Date("2024-05-31"), desktop: 178, mobile: 230 },
+  { date: new Date("2024-06-01"), desktop: 178, mobile: 200 },
+  { date: new Date("2024-06-02"), desktop: 470, mobile: 410 },
+  { date: new Date("2024-06-03"), desktop: 103, mobile: 160 },
+  { date: new Date("2024-06-04"), desktop: 439, mobile: 380 },
+  { date: new Date("2024-06-05"), desktop: 88, mobile: 140 },
+  { date: new Date("2024-06-06"), desktop: 294, mobile: 250 },
+  { date: new Date("2024-06-07"), desktop: 323, mobile: 370 },
+  { date: new Date("2024-06-08"), desktop: 385, mobile: 320 },
+  { date: new Date("2024-06-09"), desktop: 438, mobile: 480 },
+  { date: new Date("2024-06-10"), desktop: 155, mobile: 200 },
+  { date: new Date("2024-06-11"), desktop: 92, mobile: 150 },
+  { date: new Date("2024-06-12"), desktop: 492, mobile: 420 },
+  { date: new Date("2024-06-13"), desktop: 81, mobile: 130 },
+  { date: new Date("2024-06-14"), desktop: 426, mobile: 380 },
+  { date: new Date("2024-06-15"), desktop: 307, mobile: 350 },
+  { date: new Date("2024-06-16"), desktop: 371, mobile: 310 },
+  { date: new Date("2024-06-17"), desktop: 475, mobile: 520 },
+  { date: new Date("2024-06-18"), desktop: 107, mobile: 170 },
+  { date: new Date("2024-06-19"), desktop: 341, mobile: 290 },
+  { date: new Date("2024-06-20"), desktop: 408, mobile: 450 },
+  { date: new Date("2024-06-21"), desktop: 169, mobile: 210 },
+  { date: new Date("2024-06-22"), desktop: 317, mobile: 270 },
+  { date: new Date("2024-06-23"), desktop: 480, mobile: 530 },
+  { date: new Date("2024-06-24"), desktop: 132, mobile: 180 },
+  { date: new Date("2024-06-25"), desktop: 141, mobile: 190 },
+  { date: new Date("2024-06-26"), desktop: 434, mobile: 380 },
+  { date: new Date("2024-06-27"), desktop: 448, mobile: 490 },
+  { date: new Date("2024-06-28"), desktop: 149, mobile: 200 },
+  { date: new Date("2024-06-29"), desktop: 103, mobile: 160 },
+  { date: new Date("2024-06-30"), desktop: 446, mobile: 400 },
+];
+type Data = (typeof chartData)[number];
+
+const chartConfig = {
+  // visitors: {
+  //   label: 'Visitors',
+  // },
+  mobile: {
+    label: "Mobile",
+    color: "var(--chart-2)",
+  },
+  desktop: {
+    label: "Desktop",
+    color: "var(--chart-1)",
+  },
 };
 
-const chartData = generateData(30);
-const timeRange = ref("30d");
-
-type Data = typeof chartData[number];
-
 const svgDefs = `
-  <linearGradient id="fillRevenue" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="5%" stop-color="var(--primary)" stop-opacity="0.3" />
-    <stop offset="95%" stop-color="var(--primary)" stop-opacity="0" />
+  <linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
+    <stop
+      offset="5%"
+      stop-color="var(--color-desktop)"
+      stop-opacity="0.8"
+    />
+    <stop
+      offset="95%"
+      stop-color="var(--color-desktop)"
+      stop-opacity="0.1"
+    />
+  </linearGradient>
+  <linearGradient id="fillMobile" x1="0" y1="0" x2="0" y2="1">
+    <stop
+      offset="5%"
+      stop-color="var(--color-mobile)"
+      stop-opacity="0.8"
+    />
+    <stop
+      offset="95%"
+      stop-color="var(--color-mobile)"
+      stop-opacity="0.1"
+    />
   </linearGradient>
 `;
 
-const filteredData = computed(() => {
-    // In a real app, we would filter based on timeRange. 
-    // Here we just use the generated data.
-    return chartData; 
+const timeRange = ref("90d");
+const filterRange = computed(() => {
+  return chartData.filter((item) => {
+    const date = new Date(item.date);
+    const referenceDate = new Date("2024-06-30");
+    let daysToSubtract = 90;
+    if (timeRange.value === "30d") {
+      daysToSubtract = 30;
+    } else if (timeRange.value === "7d") {
+      daysToSubtract = 7;
+    }
+    const startDate = new Date(referenceDate);
+    startDate.setDate(startDate.getDate() - daysToSubtract);
+    return date >= startDate;
+  });
 });
+import CardComponent from "@/components/built-in/Card.Component.vue";
 
-const totalRevenue = "$45,231.89";
-const revenueChange = "+20.1% from last month";
-const activeBookings = "+2350";
-const bookingsChange = "+180.1% from last month";
-const sales = "+12,234";
-const salesChange = "+19% from last month";
-const activeNow = "+573";
-const activeNowChange = "+201 since last hour";
-
-const recentTransactions = [
+import PieChartComponent from "@/components/built-in/PieChart.Component.vue";
+import {
+  SquareArrowOutUpRight,
+  BedSingle,
+  CircleDollarSign,
+  KeyRound,
+  CalendarDays,
+} from "lucide-vue-next";
+const cardData = [
   {
-    customer: "Liam Johnson",
-    email: "liam@example.com",
-    amount: "$250.00",
-    status: "Approved",
-    date: "2024-06-23",
+    icon: BedSingle,
+    title: "ចំនួនការស្នាក់នៅសរុប",
+    content: "12345",
   },
   {
-    customer: "Olivia Smith",
-    email: "olivia@example.com",
-    amount: "$150.00",
-    status: "Processing",
-    date: "2024-06-24",
+    icon: CircleDollarSign,
+    title: "ទឹកប្រាក់សរុប",
+    content: "$12345",
   },
   {
-    customer: "Noah Williams",
-    email: "noah@example.com",
-    amount: "$350.00",
-    status: "Approved",
-    date: "2024-06-25",
+    icon: KeyRound,
+    title: "កំពុងស្នាក់នៅ",
+    content: "10 បន្ទប់",
   },
   {
-    customer: "Emma Brown",
-    email: "emma@example.com",
-    amount: "$450.00",
-    status: "Approved",
-    date: "2024-06-26",
-  },
-  {
-    customer: "James Jones",
-    email: "james@example.com",
-    amount: "$150.00",
-    status: "Failed",
-    date: "2024-06-27",
+    icon: CalendarDays,
+    title: "ថ្ងៃទទួលភ្ងៀវបានច្រើនជាងគេ",
+    content: "02-02-2026",
   },
 ];
+
+import DatabTableComponent from "@/components/built-in/DatabTable.Component.vue";
 </script>
 
 <template>
-  <div class="flex-1 space-y-4 p-8 pt-6">
-    <div class="flex items-center justify-between space-y-2">
-      <h2 class="text-3xl font-bold tracking-tight">Dashboard</h2>
-      <div class="flex items-center space-x-2">
-        <Select v-model="timeRange">
-          <SelectTrigger class="w-[180px]">
-            <SelectValue placeholder="Select period" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="30d">Last 30 days</SelectItem>
-            <SelectItem value="7d">Last 7 days</SelectItem>
-            <SelectItem value="24h">Last 24 hours</SelectItem>
-          </SelectContent>
-        </Select>
-        <Button>Download</Button>
+  <div class="grid gap-4 px-4 py-4">
+    <!-- LEFT 70% -->
+    <div class="flex flex-col gap-4">
+      <div class="grid grid-cols-4 gap-4">
+        
       </div>
+      <div class="flex"><BarChartComponent /> <LineChartComponent /></div>
     </div>
-    
-    <!-- Stats Cards -->
-    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-      <Card>
-        <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle class="text-sm font-medium"> Total Revenue </CardTitle>
-          <DollarSign class="h-4 w-4 text-muted-foreground" />
-        </CardHeader>
-        <CardContent>
-          <div class="text-2xl font-bold">{{ totalRevenue }}</div>
-          <p class="text-xs text-muted-foreground">{{ revenueChange }}</p>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle class="text-sm font-medium"> Bookings </CardTitle>
-          <Users class="h-4 w-4 text-muted-foreground" />
-        </CardHeader>
-        <CardContent>
-          <div class="text-2xl font-bold">{{ activeBookings }}</div>
-          <p class="text-xs text-muted-foreground">{{ bookingsChange }}</p>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle class="text-sm font-medium"> Sales </CardTitle>
-          <CreditCard class="h-4 w-4 text-muted-foreground" />
-        </CardHeader>
-        <CardContent>
-          <div class="text-2xl font-bold">{{ sales }}</div>
-          <p class="text-xs text-muted-foreground">{{ salesChange }}</p>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle class="text-sm font-medium"> Active Now </CardTitle>
-          <Activity class="h-4 w-4 text-muted-foreground" />
-        </CardHeader>
-        <CardContent>
-          <div class="text-2xl font-bold">{{ activeNow }}</div>
-          <p class="text-xs text-muted-foreground">{{ activeNowChange }}</p>
-        </CardContent>
-      </Card>
-    </div>
-
-    <!-- Charts and Recent Sales -->
-    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-      <Card class="col-span-4">
-        <CardHeader>
-          <CardTitle>Overview</CardTitle>
-          <CardDescription>
-            Revenue trends over the last 30 days.
-          </CardDescription>
-        </CardHeader>
-        <CardContent class="pl-2">
-          <div class="aspect-auto h-[350px] w-full">
-             <VisXYContainer
-                :data="filteredData"
-                :svg-defs="svgDefs"
-                :y-domain="[0, undefined]"
-            >
-                <VisArea
-                    :x="(d: Data) => d.date"
-                    :y="(d: Data) => d.revenue"
-                    color="url(#fillRevenue)"
-                    :opacity="0.6"
-                />
-                <VisLine
-                    :x="(d: Data) => d.date"
-                    :y="(d: Data) => d.revenue"
-                    color="var(--primary)"
-                    :line-width="2"
-                />
-                <VisAxis 
-                    type="x" 
-                    :x="(d: Data) => d.date" 
-                    :tick-format="(d:any) => new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })" 
-                    :tick-line="false"
-                    :domain-line="false"
-                    :grid-line="false"
-                />
-                <VisAxis 
-                    type="y" 
-                    :tick-line="false"
-                    :domain-line="false"
-                    :tick-format="(d:any) => `$${d}`"
-                />
-                <VisTooltip />
-                <VisCrosshair />
-            </VisXYContainer>
-          </div>
-        </CardContent>
-      </Card>
-      
-      <Card class="col-span-3">
-        <CardHeader>
-          <CardTitle>Recent Sales</CardTitle>
-          <CardDescription>
-            You made 265 sales this month.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div class="space-y-8">
-            <div v-for="(item, index) in recentTransactions" :key="index" class="flex items-center">
-              <div class="flex h-9 w-9 items-center justify-center rounded-full bg-muted font-bold text-muted-foreground">
-                  {{ item.customer.charAt(0) }}
-              </div>
-              <div class="ml-4 space-y-1">
-                <p class="text-sm font-medium leading-none">{{ item.customer }}</p>
-                <p class="text-sm text-muted-foreground">{{ item.email }}</p>
-              </div>
-              <div class="ml-auto font-medium">{{ item.amount }}</div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
-
-    <BarChartComponent />
-    <LineChartComponent />
-     <Card>
-        <CardHeader class="flex flex-row items-center">
-            <div class="grid gap-2">
-                <CardTitle>Transactions</CardTitle>
-                <CardDescription>Recent transactions from your store.</CardDescription>
-            </div>
-            <Button as-child size="sm" class="ml-auto gap-1">
-                <a href="#">
-                    View All
-                    <ArrowUpRight class="h-4 w-4" />
-                </a>
-            </Button>
-        </CardHeader>
-        <CardContent>
-            <Table>
-                <TableHeader>
-                    <TableRow>
-                        <TableHead>Customer</TableHead>
-                        <TableHead class="hidden xl:table-cell">Type</TableHead>
-                        <TableHead class="hidden xl:table-cell">Status</TableHead>
-                        <TableHead class="hidden xl:table-cell">Date</TableHead>
-                        <TableHead class="text-right">Amount</TableHead>
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    <TableRow v-for="transaction in recentTransactions" :key="transaction.date">
-                        <TableCell>
-                            <div class="font-medium">{{ transaction.customer }}</div>
-                            <div class="hidden text-sm text-muted-foreground md:inline">{{ transaction.email }}</div>
-                        </TableCell>
-                        <TableCell class="hidden xl:table-cell">Sale</TableCell>
-                        <TableCell class="hidden xl:table-cell">
-                            <span 
-                                class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium"
-                                :class="{
-                                    'bg-green-100 text-green-800': transaction.status === 'Approved',
-                                    'bg-yellow-100 text-yellow-800': transaction.status === 'Processing',
-                                    'bg-red-100 text-red-800': transaction.status === 'Failed',
-                                }"
-                            >
-                                {{ transaction.status }}
-                            </span>
-                        </TableCell>
-                        <TableCell class="hidden xl:table-cell">{{ transaction.date }}</TableCell>
-                        <TableCell class="text-right">{{ transaction.amount }}</TableCell>
-                    </TableRow>
-                </TableBody>
-            </Table>
-        </CardContent>
-    </Card>
   </div>
 </template>

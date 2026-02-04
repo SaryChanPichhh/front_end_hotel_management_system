@@ -12,4 +12,5 @@ export const enum ROUTE_PATH {
   ROOM_CALENDAR = "/room-calendar",
   GUEST = "/guest",
   GUEST_HISTORY = "/guest-history",
+  PERMISSION = "/app/permission",
 }
