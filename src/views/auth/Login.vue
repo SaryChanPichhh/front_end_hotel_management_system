@@ -3,11 +3,12 @@ import Button from "@/components/ui/button/Button.vue";
 import { UserCircleIcon, ShieldCheckIcon } from "@heroicons/vue/24/solid";
 import { useRouter } from "vue-router";
 const router = useRouter();
-
+import { ROUTE_NAME } from "@/router/route-name";
 import { Input } from "@/components/ui/input";
 
 const authHandle = () => {
-  router.push({ name: "app" });
+  localStorage.clear();
+  router.push({ name: ROUTE_NAME.DASHBOARD });
 };
 </script>
 
@@ -41,34 +42,4 @@ const authHandle = () => {
       >
     </div>
   </div>
-
-  <!-- <FieldSet class="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
-    <FieldGroup class="">
-      <Field>
-        <div class="mb-2">
-          <Input
-            id="username"
-            type="text"
-            placeholder="ឈ្មោះគណនីប្រើប្រាស់"
-            class="w-full py-5"
-          />
-        </div>
-      </Field>
-
-      <Field>
-        <div class="relative w-full">
-          <Input
-            id="password"
-            type="password"
-            placeholder="ពាក្យសម្ងាត់"
-            class="w-full py-6 pl-10"
-          />
-          <span class="absolute left-3 top-1/2 transform -translate-y-1/2">
-            Example icoplacen, you can replace it with any icon -->
-  <!-- <i class="fas fa-times"></i>
-          </span>
-        </div>
-      </Field>
-    </FieldGroup>
-  </FieldSet> -->
 </template>

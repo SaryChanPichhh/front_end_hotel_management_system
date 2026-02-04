@@ -3,7 +3,7 @@ import Button from "@/components/ui/button/Button.vue";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import ribbonData from "@/router/ribbon";
-import { UserGroupIcon, XCircleIcon, XMarkIcon } from "@heroicons/vue/24/solid";
+import { XMarkIcon } from "@heroicons/vue/24/solid";
 
 const router = useRouter();
 
@@ -24,15 +24,31 @@ const selectedButton = ref<Tab[]>([]);
 // Load tabs from local storage on mount
 const loadTabsFromLocalStorage = () => {
   const storedTabs = localStorage.getItem("tabs");
+  const storedActiveTab = localStorage.getItem("activeTab");
+
   if (storedTabs) {
     try {
       selectedButton.value = JSON.parse(storedTabs);
-      // Set active button to the last one if exists, or handle routing if needed
+
       if (selectedButton.value.length > 0) {
-        const lastTab = selectedButton.value[selectedButton.value.length - 1];
-        activeButton.value = lastTab!.button_name;
-        // Optionally navigate to the last open tab
-        // router.push({ name: lastTab.route });
+        let tabToActivate = null;
+
+        // Try to find the stored active tab in the list of open tabs
+        if (storedActiveTab) {
+          tabToActivate = selectedButton.value.find(
+            (t) => t.button_name === storedActiveTab,
+          );
+        }
+
+        // Fallback to the last tab if active tab not found or not set
+        if (!tabToActivate) {
+          tabToActivate = selectedButton.value[selectedButton.value.length - 1];
+        }
+
+        if (tabToActivate) {
+          activeButton.value = tabToActivate.button_name;
+          router.push({ name: tabToActivate.route });
+        }
       }
     } catch (e) {
       console.error("Failed to parse tabs from local storage", e);
@@ -56,12 +72,17 @@ const saveTabsToLocalStorage = () => {
   localStorage.setItem("tabs", JSON.stringify(selectedButton.value));
 };
 
+const saveActiveTabToLocalStorage = (button_name: string) => {
+  localStorage.setItem("activeTab", button_name);
+};
+
 const actionButton = (
   buttonIndex: number,
   button_name: string,
   route: string,
 ) => {
   activeButton.value = button_name;
+  saveActiveTabToLocalStorage(button_name);
 
   if (!selectedButton.value.some((x) => x.button_name === button_name)) {
     selectedButton.value.push({
@@ -90,9 +111,11 @@ const removeTab = (button_name: string, index: number, route: string, group_inde
       if (selectedButton.value.length > 0) {
         const lastTab = selectedButton.value[selectedButton.value.length - 1];
         activeButton.value = lastTab!.button_name;
+        saveActiveTabToLocalStorage(lastTab!.button_name);
         router.push({ name: lastTab!.route });
       } else {
         activeButton.value = null;
+        localStorage.removeItem("activeTab");
         router.push("/app"); // Navigate to a default route or home
       }
     }
@@ -129,8 +152,11 @@ const removeTab = (button_name: string, index: number, route: string, group_inde
                 @click="actionButton(button_index, button.name, button.route)" :class="{
                   'border rounded-md border-primary bg-purple-50 text-primary h-full pointer-events-none pl-2 pr-2 ':
                     activeButton === button.name,
-                }">
-                <UserGroupIcon class="w-6 h-6" />
+                }"
+              >
+                <div v-if="button">
+                  <component :is="button.icon" class="w-6 h-6" />
+                </div>
                 <p>{{ button.name }}</p>
               </div>
             </div>

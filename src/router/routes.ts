@@ -1,5 +1,6 @@
 import type { RouteRecordRaw } from "vue-router";
 import { ROUTE_NAME } from "./route-name";
+import { ROUTE_PATH } from "./route-path";
 
 export const routes: RouteRecordRaw[] = [
   {
@@ -11,10 +12,12 @@ export const routes: RouteRecordRaw[] = [
     name: "app",
     component: () => import("@/layouts/RibbonLayout.vue"),
     meta: { requiresAuth: true },
+    redirect: ROUTE_PATH.DASHBOARD,
     children: [
       {
-        path: "",
-        component: () => import("@/views/Home.vue"),
+        path: ROUTE_PATH.DASHBOARD,
+        component: () => import("@/views/Dashboard.vue"),
+        name: ROUTE_NAME.DASHBOARD,
       },
       {
         path: "/supplier",
@@ -24,6 +27,32 @@ export const routes: RouteRecordRaw[] = [
             path: "/supplier",
             component: () => import("@/views/stock/Supplier.vue"),
             name: ROUTE_NAME.SUPPLIER,
+          },
+        ],
+      },
+      {
+        path: "/general-setting",
+        children: [
+          {
+            path: ROUTE_PATH.STOCK,
+            component: () => import("@/views/stock/Inventory.vue"),
+            name: ROUTE_NAME.STOCK,
+          },
+        ],
+      },
+      {
+        path: "/customer",
+        children: [
+          {
+            path: ROUTE_PATH.GUEST,
+            component: () => import("@/views/customer/Customer.vue"),
+            name: ROUTE_NAME.GUEST,
+          },
+          {
+            path: ROUTE_PATH.GUEST_HISTORY,
+            component: () =>
+              import("@/views/customer/CustomerReversationHist.vue"),
+            name: ROUTE_NAME.GUEST_HISTORY,
           },
         ],
       },
@@ -41,6 +70,16 @@ export const routes: RouteRecordRaw[] = [
             path: "/room-type",
             component: () => import("@/views/rooms/RoomType.vue"),
             name: ROUTE_NAME.ROOM_TYPE,
+          },
+        ],
+      },
+      {
+        path: "/about",
+        children: [
+          {
+            path: ROUTE_PATH.ABOUT,
+            component: () => import("@/views/about/About.vue"),
+            name: ROUTE_NAME.ABOUT,
           },
         ],
       },
