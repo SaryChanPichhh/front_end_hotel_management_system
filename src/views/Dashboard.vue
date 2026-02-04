@@ -24,8 +24,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const description = "An interactive area chart";
-
 const chartData = [
   { date: new Date("2024-04-01"), desktop: 222, mobile: 150 },
   { date: new Date("2024-04-02"), desktop: 97, mobile: 180 },
@@ -178,88 +176,58 @@ const filterRange = computed(() => {
     return date >= startDate;
   });
 });
+import CardComponent from "@/components/built-in/Card.Component.vue";
+import BarChartComponent from "@/components/built-in/BarChart.Component.vue";
+import LineChartComponent from "@/components/built-in/LineChart.Component.vue";
+import PieChartComponent from "@/components/built-in/PieChart.Component.vue";
+import {
+  SquareArrowOutUpRight,
+  BedSingle,
+  CircleDollarSign,
+  KeyRound,
+  CalendarDays,
+} from "lucide-vue-next";
+const cardData = [
+  {
+    icon: BedSingle,
+    title: "ចំនួនការស្នាក់នៅសរុប",
+    content: "12345",
+  },
+  {
+    icon: CircleDollarSign,
+    title: "ទឹកប្រាក់សរុប",
+    content: "$12345",
+  },
+  {
+    icon: KeyRound,
+    title: "កំពុងស្នាក់នៅ",
+    content: "10 បន្ទប់",
+  },
+  {
+    icon: CalendarDays,
+    title: "ថ្ងៃទទួលភ្ងៀវបានច្រើនជាងគេ",
+    content: "02-02-2026",
+  },
+];
+
+import DatabTableComponent from "@/components/built-in/DatabTable.Component.vue";
 </script>
 
 <template>
-  <Card class="pt-0">
-    <CardHeader
-      class="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row"
-    >
-      <div class="grid flex-1 gap-1">
-        <CardTitle>Area Chart - Interactive</CardTitle>
-        <CardDescription>
-          Showing total visitors for the last 3 months
-        </CardDescription>
+  <div class="grid gap-4 px-4 py-4">
+    <!-- LEFT 70% -->
+    <div class="flex flex-col gap-4">
+      <div class="grid grid-cols-4 gap-4">
+        <CardComponent
+          v-for="(card, index) in cardData"
+          :key="index"
+          :icon="card.icon"
+          :title="card.title"
+          :content="card.content"
+          class="border border-primary hover:shadow-lg"
+        />
       </div>
-      <Select v-model="timeRange">
-        <SelectTrigger
-          class="hidden w-[160px] rounded-lg sm:ml-auto sm:flex"
-          aria-label="Select a value"
-        >
-          <SelectValue placeholder="Last 3 months" />
-        </SelectTrigger>
-        <SelectContent class="rounded-xl">
-          <SelectItem value="90d" class="rounded-lg">
-            Last 3 months
-          </SelectItem>
-          <SelectItem value="30d" class="rounded-lg"> Last 30 days </SelectItem>
-          <SelectItem value="7d" class="rounded-lg"> Last 7 days </SelectItem>
-        </SelectContent>
-      </Select>
-    </CardHeader>
-    <CardContent class="px-2 pt-4 sm:px-6 sm:pt-6 pb-4">
-      <div class="aspect-auto h-[250px] w-full">
-        <VisXYContainer
-          :data="filterRange"
-          :svg-defs="svgDefs"
-          :margin="{ left: -40 }"
-          :y-domain="[0, 1200]"
-        >
-          <VisArea
-            :x="(d: Data) => d.date"
-            :y="[(d: Data) => d.mobile, (d: Data) => d.desktop]"
-            :color="
-              (d: Data, i: number) =>
-                ['url(#fillMobile)', 'url(#fillDesktop)'][i]
-            "
-            :opacity="0.6"
-          />
-          <VisLine
-            :x="(d: Data) => d.date"
-            :y="[(d: Data) => d.mobile, (d: Data) => d.mobile + d.desktop]"
-            :color="
-              (d: Data, i: number) =>
-                [chartConfig.mobile.color, chartConfig.desktop.color][i]
-            "
-            :line-width="1"
-          />
-          <VisAxis
-            type="x"
-            :x="(d: Data) => d.date"
-            :tick-line="false"
-            :domain-line="false"
-            :grid-line="false"
-            :num-ticks="6"
-            :tick-format="
-              (d: number, index: number) => {
-                const date = new Date(d);
-                return date.toLocaleDateString('en-US', {
-                  month: 'short',
-                  day: 'numeric',
-                });
-              }
-            "
-          />
-          <VisAxis
-            type="y"
-            :num-ticks="3"
-            :tick-line="false"
-            :domain-line="false"
-          />
-          <VisTooltip />
-          <VisCrosshair />
-        </VisXYContainer>
-      </div>
-    </CardContent>
-  </Card>
+      <div class="flex"><BarChartComponent /> <LineChartComponent /></div>
+    </div>
+  </div>
 </template>

@@ -11,4 +11,5 @@ export const enum ROUTE_NAME {
   ROOM_CALENDAR = "room-calendar",
   GUEST = "guest",
   GUEST_HISTORY = "guest-history",
+  PERMISSION = "permission",
 }

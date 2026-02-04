@@ -12,7 +12,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        khmer: ['"Kantumruy"', "system-ui", "sans-serif"],
+        khmer: ['"Misans Khmer Normal"', "system-ui", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

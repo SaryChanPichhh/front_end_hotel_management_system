@@ -78,7 +78,7 @@
 @theme inline {
   --color-warning: var(--warning);
   --color-warning-foreground: var(--warning-foreground);
-  --font-khmer: "Kantumruy", system-ui, sans-serif;
+  --font-khmer: "Misans Khmer Normal", system-ui, sans-serif;
 }
 
 @layer base {
@@ -99,6 +99,27 @@
 @font-face {
   font-family: "Kantumruy";
   src: url("/src/assets/fonts/Kantumruy-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Misans Khmer";
+  src: url("/src/assets/fonts/MiSansKhmer-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Misans Khmer Normal";
+  src: url("/src/assets/fonts/MiSansKhmer-Normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Misans Khmer Medium";
+  src: url("/src/assets/fonts/MiSansKhmer-Medium.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
