@@ -12,12 +12,7 @@ const permissionData = [
         buttons: [
           {
             name: ButtonInfo.Permission,
-            action: [
-              ActionDesc.View,
-              ActionDesc.Add,
-              ActionDesc.Edit,
-              ActionDesc.Delete,
-            ],
+            action: [ActionDesc.Add, ActionDesc.Edit, ActionDesc.Delete],
           },
         ],
       },
@@ -94,16 +89,37 @@ const permissionData = [
     ],
   },
 ];
-const buttonSelected = ref('');
-const fnButtonSelected = (groupName:string) => {
-  
-    console.log(groupName);
-    
-}
+const buttonSelected = ref<string[]>([]);
+const fnButtonSelected = (
+  e: Event,
+  parent: string,
+  group: string,
+  button: string,
+) => {
+  const isTicked = e.target as HTMLInputElement;
+  console.log(isTicked.checked);
+  if (!isTicked.checked) {
+    buttonSelected.value = [];
+    return;
+  }
+  const data = permissionData
+    .find((item) => item?.parent === parent)
+    ?.group.find((item) => item.name === group)
+    ?.buttons.find((item) => item.name === button)
+    ?.action.flat() as string[];
+  if (data) {
+    buttonSelected.value = data;
+    console.log(buttonSelected.value);
+  }
+};
 </script>
 <template>
   <div class="w-full h-full">
-    <Tabs class="w-full bg-inherit" default-value="ការគ្រប់គ្រង">
+    <Tabs
+      class="w-full bg-inherit"
+      default-value="ការគ្រប់គ្រង"
+      @update:model-value="buttonSelected = []"
+    >
       <TabsList class="w-full bg-inherit flex items-start justify-start p-0">
         <TabsTrigger
           v-for="tab in permissionData"
@@ -118,25 +134,48 @@ const fnButtonSelected = (groupName:string) => {
         v-for="tab in permissionData"
         :key="tab.parent"
         :value="tab.parent"
-        class="flex items-center p-0  m-0"
+        class="flex p-0 m-0"
       >
         <div class="w-full h-full flex flex-col">
-          <div class="flex items-center gap-2 mt-2"><Checkbox class="rounded-none "></Checkbox>ទាំងអស់</div>
+          <div class="flex items-center gap-2 mt-2">
+            <Checkbox class="rounded-none"></Checkbox>ទាំងអស់
+          </div>
           <div
             v-for="group in tab.group"
             :key="group.name"
-            class="flex flex-col items-start mt-2 " 
+            class="flex flex-col items-start mt-2"
           >
-            
             ------------------ {{ group.name }} ------------------
             <div
               v-for="button in group.buttons"
               :key="button.name"
               class="flex items-center gap-2 mt-2"
             >
-              <Checkbox class="rounded-none " @change="fnButtonSelected(group.name)"></Checkbox>
+              <input
+                class="rounded-none w-[17px] h-[17px]"
+                @change="
+                  fnButtonSelected($event, tab.parent, group.name, button.name)
+                "
+                type="checkbox"
+              />
               {{ button.name }}
             </div>
+          </div>
+        </div>
+        <div class="w-full h-full flex flex-col items-start">
+          <div class="flex gap-2 mt-2">
+            <Checkbox class="rounded-none"></Checkbox>ទាំងអស់
+          </div>
+          <div
+            v-for="button in buttonSelected"
+            :key="button"
+            class="flex items-center gap-2 mt-2"
+          >
+            <input
+              class="rounded-none w-[17px] h-[17px] border border-gray-300"
+              type="checkbox"
+            />
+            {{ button }}
           </div>
         </div>
       </TabsContent>
